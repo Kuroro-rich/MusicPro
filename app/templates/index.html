@@ -4,16 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ data.titulo }}</title>
+
+    <link rel="stylesheet" href={{ url_for('static', filename='css/Menu.css') }}>
 </head>
 <body>
-
+    <h1>{{ data.Bienvenidos }}</h1>
     <!--Header - Menu-->
 
      <header>
         <div class="container__header">
             <div class="logo">
                 <a href="#">
-                    <img src="static/images/music-logo-desing.jpg" alt="">
+                    <img src="static/images/Logomusic.jpg" alt="">
                 </a>
             </div>
 
@@ -43,7 +45,6 @@
         </div>
      </header>
 
-    
 
 </body>
 </html>
