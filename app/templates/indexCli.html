@@ -1,0 +1,50 @@
+{% extends './layout.html' %}
+
+{% block body %}
+ 
+
+
+<a> INICIO</a>
+<!--  carrusel de la pagina -->
+<div class="row">
+    <div id="carousel" class="col-12" style="width: 50%; margin:0 auto;">
+        <div id="myCarousel" class="carousel center slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active ">
+                    <img class="d-block w-100" src="static/img/bateria1.jpg">
+                </div>
+                <div class="carousel-item">
+                    <img class="d-block w-100" src="static/img/bateria1.jpg">
+                </div>
+                <div class="carousel-item ">
+                    <img class="d-block w-100" src="static/img/bateria1.jpgg">
+                </div>
+            </div>
+            <a class="carousel-control-prev" href="#myCarousel" role="button" data-bs-slide="prev" id="test">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            </a>
+            <a class="carousel-control-next" href="#myCarousel" role="button" data-bs-slide="next" id="test">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            </a>
+        </div>
+    </div>
+</div>
+<br>
+<!-- fin carrusel -->
+<div class="row">
+    <div class="col-6">
+        <P><strong>Bienvenido a KojoPlant:</strong><br> Bienvenides a nuestra linda tienta virtual, aquí mostraremos nuestros productos y nuestra historia donde comenzaremos a vender diferentes productos relacionado a todo lo natural, diversos materiales
+            donde podran ir comprando todo lo que necesiten!!, ATENTOS A SU INAUGURACION
+        </P>
+    </div>
+    <div class="col-6">
+        <P>
+            KojoPlant es una empresa formada por expertos jardineros que ofrecen sus servicios a empresas, comunidades de vecinos, particulares, tales como:Mantenimiento de jardines y plantas de interior, obras de jardinería, podas y talas controladas, tratamientos
+            fitosanitarios, instalación de riegos automáticos, desbroces, regeneración de césped en mal estado, instalación de césped en tepes, resemillados, abonos y mantillo. Calidad y experiencia al mejor precio.
+        </P>
+    </div>
+</div>
+
+
+
+{% endblock %}
