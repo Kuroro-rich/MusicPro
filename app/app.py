@@ -21,7 +21,10 @@ def create_table():
 
 @app.route('/')
 def index ():
-        return redirect('/indexCli.html')
+    if 'username' in session:
+        return f'Bienvenido, {session["username"]}!'
+    else:
+         return redirect('/indexCli.html')
 
 @app.route('/pedidos')
 def pedidos ():
