@@ -21,7 +21,7 @@ def create_table():
 
 @app.route('/')
 def index ():
-        return redirect('/index.html')
+        return redirect('/indexCli.html')
 
 @app.route('/pedidos')
 def pedidos ():
