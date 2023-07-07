@@ -49,7 +49,7 @@ def login():
             return redirect('/')
         else:
             return "Invalid username or password"
-    return render_template('login.html')
+    return render_template('Login.html')
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
