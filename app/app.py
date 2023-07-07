@@ -1,30 +1,27 @@
 from flask import Flask, render_template, request, redirect, session
-from flask_sqlalchemy import SQLAlchemy
+import sqlite3
+
+app = Flask(__name__)
+app.secret_key = 'your_secret_key'  # Clave secreta para la sesión
+DB_NAME = 'users.db'
 
 
-app=Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.db'
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.secret_key = 'your_secret_key' #!-cambiar la clave a la de nosotros de base de dato-!
 
-db = SQLAlchemy(app)
-
-class User(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(50), unique=True)
-    password = db.Column(db.String(50))
-
-    def __init__(self, username, password):
-        self.username = username
-        self.password = password
+def create_table():
+    conn = sqlite3.connect(DB_NAME)
+    cursor = conn.cursor()
+    cursor.execute('''CREATE TABLE IF NOT EXISTS users
+                      (id INTEGER PRIMARY KEY AUTOINCREMENT,
+                       username TEXT NOT NULL,
+                       password TEXT NOT NULL)''')
+    conn.commit()
+    conn.close()
 
 #!-Termina la base de datos--!
 
 @app.route('/')
 def index ():
-        if 'username' in session:
-            return f"Hola, {session['username']}!"
-        return redirect('/login')
+        return redirect('/index.html')
 
 @app.route('/pedidos')
 def pedidos ():
@@ -43,22 +40,30 @@ def login():
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
-        user = User.query.filter_by(username=username, password=password).first()
+        conn = sqlite3.connect(DB_NAME)
+        cursor = conn.cursor()
+        cursor.execute("SELECT * FROM users WHERE username = ? AND password = ?",
+                       (username, password))
+        user = cursor.fetchone()
+        conn.close()
         if user:
             session['username'] = username
             return redirect('/')
         else:
-            return "Invalid username or password"
-    return render_template('Login.html')
+            return 'Credenciales inválidas. Inténtalo de nuevo.'
+    return render_template('login.html')
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
-        new_user = User(username, password)
-        db.session.add(new_user)
-        db.session.commit()
+        conn = sqlite3.connect(DB_NAME)
+        cursor = conn.cursor()
+        cursor.execute("INSERT INTO users (username, password) VALUES (?, ?)",
+                       (username, password))
+        conn.commit()
+        conn.close()
         return redirect('/login')
     return render_template('register.html')
 
@@ -68,7 +73,7 @@ def logout():
     return redirect('/')
 
 if __name__ == '__main__':
-    db.create_all()
+    create_table()
     app.run(debug=True)
 
 
