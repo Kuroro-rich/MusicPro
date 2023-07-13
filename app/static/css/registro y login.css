@@ -14,7 +14,7 @@ body {
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    color: #fff;
+    color: #000000;
 }
 
 .container-form {
@@ -62,7 +62,7 @@ body {
     width: 400px;
     padding: 1rem;
     margin: 2rem;
-    background-color: rgb(51, 51, 51, 0.602);
+    background-color: rgba(6, 6, 6, 0.602);
     text-align: center;
 }
 
