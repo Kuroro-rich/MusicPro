@@ -222,7 +222,7 @@ def agregar():
         #insertar nuevo prod
         cur=mysql.connection.cursor()
         cur.execute('INSERT INTO productos (nombre, precio, cantidad, categoria, foto) VALUES (%s, %s, %s, %s, %s)',
-                    (nombre, precio, cantidad, categoria, new_name_file.decode('utf-8')))
+                    (nombre, precio, cantidad, categoria, new_name_file))
         
         mysql.connection.commit()
         flash('instrumento agregado')
