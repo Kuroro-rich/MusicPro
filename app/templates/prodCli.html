@@ -5,70 +5,39 @@
 
 
 
-<div class="galeria container">
-    <div class="contenedor-imagenes">
-        <div class="row">
-            <div class="col">
-                <div class="imagen">
-                    <img src="static/img/bateria1.jpg" alt="">
-                    <div class="overlay">
-                        <h2>Bateria $25.000
-                        </h2>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="imagen">
-                    <img src="static/img/electrica1.jpg" alt="">
-                    <div class="overlay">
-                        <h2>Bajo electronico $150.000
-                        </h2>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="imagen">
-                    <img src="static/img/guitarra1.jpg" alt="">
-                    <div class="overlay">
-                        <h2>Guitarras pack $250.000
-                        </h2>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
+<div> 
 
 
-        <div class="row">
-            <div class="col">
-                <div class="imagen">
-                    <img src="static/img/guitarra2.jpg" alt="">
-                    <div class="overlay">
-                        <h2>Guitarra pack  $50.000
-                        </h2>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="imagen">
-                    <img src="static/img/guitarra3.jpg" alt="">
-                    <div class="overlay">
-                        <h2>Guitarra Bon Jovi: $100.000
-                        </h2>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="imagen">
-                    <img src="static/img/piano 1.jpg" alt="">
-                    <div class="overlay">
-                        <h2>Piano: $45.000
-                        </h2>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    <!-- Lista de productos -->
+    <h2>Lista de productos</h2>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Precio</th>
+            <th>Categoría</th>
+            <th>Cantidad</th>
+            <th>Foto</th>
+            
+        </tr>
+        {% for producto in productos %}
+        {% with urlFoto = '/static/uploads/' %}
+        <tr>
+            <th>{{ producto.0 }}</th>
+            <th>{{ producto.1 }}</th>
+            <th>{{ producto.2 }}</td>
+            <th>{{ producto.3 }}</th>
+            <th>{{ producto.4 }}</th>
+            
+            <th><img style="height: 100px; width: 100 px;;" src="{{ urlFoto }}{{ producto.5.decode('utf-8')}}" alt=""></th>
+            <th>    
+            <!-- editar, eliminar td--> 
+            </th>
+        </tr>
+        {% endwith %}
+        {% endfor %}
+    </table>
+
 </div>
 
 {% endblock %}

@@ -1,5 +1,4 @@
-<!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,63 +9,91 @@
     <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" type="text/css" href="static/css/registro y login.css"  th:href="@{/css/index.css}">
 </head>
-<body>
-    <div class="container-form sign-up">
-        <div class="welcome-back">
-            <div class="message">
-                <h2>Bienvenido a MusicPro</h2>
-                <p>Si ya tienes una cuenta por favor inicia sesion aqui</p>
-                <button class="sign-up-btn">Iniciar Sesion</button>
-            </div>
-        </div>
-        <form class="formulario">
-            <h2 class="create-account">Crear una cuenta</h2>
-            <div class="iconos">
-                <div class="border-icon">
-                    <i class='bx bxl-instagram'></i>
-                </div>
-                <div class="border-icon">
-                    <i class='bx bxl-linkedin' ></i>
-                </div>
-                <div class="border-icon">
-                    <i class='bx bxl-facebook-circle' ></i>
-                </div>
-            </div>
-            <p class="cuenta-gratis">Crear una cuenta gratis</p>
-            <input type="text" placeholder="Nombre">
-            <input type="email" placeholder="Email">
-            <input type="password" placeholder="Contraseña">
-            <input type="button" value="Registrarse">
-        </form>
-    </div>
-    <div class="container-form sign-in">
-        <form class="formulario">
-            <h2 class="create-account">Iniciar Sesion</h2>
-            <div class="iconos">
-                <div class="border-icon">
-                    <i class='bx bxl-instagram'></i>
-                </div>
-                <div class="border-icon">
-                    <i class='bx bxl-linkedin' ></i>
-                </div>
-                <div class="border-icon">
-                    <i class='bx bxl-facebook-circle' ></i>
-                </div>
-            </div>
-            <p class="cuenta-gratis">¿Aun no tienes una cuenta?</p>
-            <input type="email" placeholder="Email">
-            <input type="password" placeholder="Contraseña">
-            <input type="button" value="Iniciar Sesion">
-        </form>
-        <div class="welcome-back">
-            <div class="message">
-                <h2>Bienvenido de nuevo</h2>
-                <p>Si aun no tienes una cuenta por favor registrese aqui</p>
-                <button class="sign-in-btn">Registrarse</button>
-            </div>
-        </div>
-    </div>
-    <script src="static/js/script.js"></script>
-</body>
 
-</html>
+<li class="nav-item ">
+    <a class="nav-link" href="/index">Inicio <span class="sr-only">(current)</span></a>
+  </li>
+
+    <body>
+        <div class="container-form sign-up">
+            <div class="welcome-back">
+                <div class="message">
+                    <h2>Bienvenido a MusicPro</h2>
+                    <p>Si ya tienes una cuenta por favor inicia sesion aqui</p>
+                    <button class="sign-up-btn">Iniciar Sesion</button>
+                </div>
+            </div>
+            <form action="{{ url_for('register') }}" method="POST" autocomplete="off" class="formulario">
+                <h2 class="create-account">Crear una cuenta</h2>
+                <div class="iconos">
+                    <div class="border-icon">
+                        <i class='bx bxl-instagram'></i>
+                    </div>
+                    <div class="border-icon">
+                        <i class='bx bxl-linkedin' ></i>
+                    </div>
+                    <div class="border-icon">
+                        <i class='bx bxl-facebook-circle' ></i>
+                    </div>
+                </div>
+                <p class="cuenta-gratis">Crear una cuenta gratis</p>
+                    <label for="username" class="form-label">Nombre de Usuario <i class="fa fa-user"></i></label>
+                    <input type="text" name="username" class="form-control" placeholder="Username" id="username" required>
+                    <label for="password">
+                        Contraseña
+                        <i class="fa fa-lock"></i>
+                    </label>
+                    <input type="password" name="password" class="form-control" placeholder="Password" id="password" required>
+                    <label for="email" class="form-label">
+                        Correo Electrónico
+                        <i class="fa fa-envelope-open"></i>
+                    </label>
+                    <input type="email" name="email" class="form-control" placeholder="Email" id="email" required>
+                    <div class="msg">{{ msg }}</div>
+                    <input type="submit" class="btn btn-success" value="Registrarse">
+                </form>
+            </form>
+        </div>
+        <div class="container-form sign-in">
+           
+            <!-- <form class="col-12 formulario" th:action="@{/login}" method="POST"> -->
+                <form class="col-12 formulario" enctype="multipart/form-data" action="{{ url_for('login') }}" method="POST">
+                <h2 class="create-account">Iniciar Sesion</h2>
+                <div class="iconos">
+                    <div class="border-icon">
+                        <i class='bx bxl-instagram'></i>
+                    </div>
+                    <div class="border-icon">
+                        <i class='bx bxl-linkedin' ></i>
+                    </div>
+                    <div class="border-icon">
+                        <i class='bx bxl-facebook-circle' ></i>
+                    </div>
+                </div>
+                <p class="cuenta-gratis">¿Aun no tienes una cuenta?</p>
+                    <div class="form-group" id="user-group">
+                        <input type="text" class="form-control" placeholder="Nombre de usuario" id="username" name="username"/>
+                    </div>
+                    <div class="form-group" id="contrasena-group">
+                        <input type="password" class="form-control" placeholder="Contrasena" id="password" name="password"/>
+                    </div>
+                    <button type="submit" class="btn btn-success">Ingresar</button>
+                </form>
+
+            <div class="welcome-back">
+                <div class="message">
+                    <h2>Bienvenido de nuevo</h2>
+                    <p>Si aun no tienes una cuenta por favor registrese aqui</p>
+                    <button class="sign-in-btn ">Registrarse</button>
+                </div>
+            </div>
+        </div>
+        <script src="static/js/script.js"></script>
+    </body>
+    
+   
+
+    
+
+<br>
+

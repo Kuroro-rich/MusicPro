@@ -1,0 +1,54 @@
+{% extends './layout.html' %}
+{% block body %}
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+{% for message in messages %}
+<p>{{ message }}</p>
+{% endfor %}
+{% endif %}
+{% endwith %}
+<div class="container-fluid">
+    <h1 class="text-center">Agregar instrumentos</h1>
+    <form action="" method="POST" enctype="multipart/form-data" autocomplete="off">
+        <input class="form-control mb-3" type="text" name="nombre" placeholder="Nombre Instrumento">
+        <input class="form-control mb-3" type="number" name="precio" placeholder="precio Instrumento">
+        <input class="form-control mb-3" type="text" name="categoria" placeholder="categoria Instrumento">
+        <input class="form-control mb-3" type="number" name="cantidad" placeholder="cantidad Instrumento">
+        <input class="form-control mb-3" type="file" name="foto" placeholder="Imagen Instrumento">
+        <button type="submit" class="btn btn-success mb-3">Añadir</button>
+    </form>
+</div>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <td>#</td>
+            <td>Nombre</td>
+            <td>precio</td>
+            <td>categoria</td>
+            <td>cantidad</td>
+            <td>foto</td>
+        </tr>
+    </thead>
+    <tbody>
+        {% for producto in productos %}
+        {% with urlFoto = '/static/uploads/' %}
+        <tr>
+            <td>{{ producto.id }}</td>
+            <td>{{ producto.nombre }}</td>
+            <td>{{ producto.precio }}</td>
+            <td>{{ producto.categoria }}</td>
+            <td>{{ producto.cantidad }}</td>
+            <td><img src="{{ urlFoto }}{{ ins.4.decode('utf-8') }}" alt=""></td>
+            <td>
+                <a href="/editar/{{ ins.0 }}">Editar</a>
+            </td>
+            <td>
+                <a href="/eliminar/{{ ins.0 }}">Eliminar</a>
+            </td>
+        </tr>
+        {% endwith %}
+        {% endfor %}
+    </tbody>
+</table>
+<br>
+{% endblock %}
